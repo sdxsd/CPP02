@@ -14,6 +14,10 @@ class Fixed {
 		Fixed(int n);
 		~Fixed(void);
 		void	operator=(const Fixed &copy);
+		Fixed	operator+(const Fixed &fix) const;
+		Fixed	operator-(const Fixed &fix) const;
+		Fixed	operator/(const Fixed &fix) const;
+		Fixed	operator*(const Fixed &fix) const;
 		void	setRawBits(int const raw);
 		int	getRawBits(void) const;
 		void	test(void) const;

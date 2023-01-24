@@ -43,6 +43,25 @@ void Fixed::operator=(const Fixed &copy) {
 	std::cout << "Copy assignment operator called." << std::endl;
 }
 
+Fixed Fixed::operator+(const Fixed &fix) const {
+	Fixed f;
+
+	f.FixedPointValue = this->getRawBits() + fix.getRawBits();
+	return (f);
+}
+
+Fixed Fixed::operator-(const Fixed &fix) const {
+	Fixed f;
+
+	f.FixedPointValue = this->getRawBits() - fix.getRawBits();
+	return (f);
+}
+
+Fixed Fixed::operator*(const Fixed &fix) const {
+	Fixed f;
+	f.FixedPointValue =
+}
+
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
 	float	num = fixed.getRawBits();
 
