@@ -121,18 +121,46 @@ bool Fixed::operator!=(const Fixed &fix) const {
 	return (this->toFloat() != fix.toFloat());
 }
 
+Fixed &Fixed::operator++(void) {
+	++(this->FixedPointValue);
+	return (*this);
+}
+
+Fixed &Fixed::operator--(void) {
+	--(this->FixedPointValue);
+	return (*this);
+}
+
+Fixed &Fixed::operator++(int x) {
+	if (x >= 0) {
+		for (int i = 0; i < x; i++)
+			++(this->FixedPointValue); }
+	else if (x <= 0) {
+		for (int i = 0; i < x; i++)
+			--(this->FixedPointValue); }
+	return (*this);
+}
+
+Fixed &Fixed::operator--(int x) {
+	if (x <= 0) {
+		for (int i = 0; i < x; i++)
+			++(this->FixedPointValue); }
+	else if (x >= 0) {
+		for (int i = 0; i < x; i++)
+			--(this->FixedPointValue); }
+	return (*this);
+}
+
 /* === / STATIC MEMBER FUNCTIONS / === */
 
 Fixed& Fixed::min(Fixed &x, Fixed &y) {
-	if (x.toFloat() < y.toFloat())
+	if (x.toFloat() <= y.toFloat())
 		return (x);
-	else
-		return (y);
+	return (y);
 }
 
 Fixed& Fixed::max(Fixed &x, Fixed &y) {
-	if (x.toFloat() > y.toFloat())
+	if (x.toFloat() >= y.toFloat())
 		return (x);
-	else
-		return (y);
+	return (y);
 }

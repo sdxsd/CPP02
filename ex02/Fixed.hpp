@@ -34,6 +34,10 @@ class Fixed {
 		bool			operator>=(const Fixed &fix) const;
 		bool			operator==(const Fixed &fix) const;
 		bool			operator!=(const Fixed &fix) const;
+		Fixed&			operator++(void);
+		Fixed&			operator--(void);
+		Fixed&			operator++(int x);
+		Fixed&			operator--(int x);
 		// Static member functions.
 		static Fixed&		min(Fixed &x, Fixed &y);
 		static Fixed&		max(Fixed &x, Fixed &y);
