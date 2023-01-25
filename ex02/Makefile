@@ -9,7 +9,7 @@ OFILES = $(FILES:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OFILES)
-	$(CC) $(FLAGS) $(OFILES) -o $(NAME)
+	$(CC) $(FLAGS) -DCMESSAGE=0 $(OFILES) -o $(NAME)
 
 %.o: %.cpp
 	@$(CC) $(FLAGS) -c $< -o $@
