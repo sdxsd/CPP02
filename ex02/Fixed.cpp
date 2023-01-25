@@ -44,22 +44,24 @@ void Fixed::operator=(const Fixed &copy) {
 }
 
 Fixed Fixed::operator+(const Fixed &fix) const {
-	Fixed f;
+	Fixed result;
 
-	f.FixedPointValue = this->getRawBits() + fix.getRawBits();
-	return (f);
+	result = Fixed(this->toFloat() + fix.toFloat());
+	return (result);
 }
 
 Fixed Fixed::operator-(const Fixed &fix) const {
-	Fixed f;
+	Fixed result;
 
-	f.FixedPointValue = this->getRawBits() - fix.getRawBits();
-	return (f);
+	result = Fixed(fix.toFloat() - this->toFloat());
+	return (result);
 }
 
 Fixed Fixed::operator*(const Fixed &fix) const {
 	Fixed f;
-	f.FixedPointValue =
+
+	f.FixedPointValue = this->getRawBits() * fix.getRawBits();
+	return (f);
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
@@ -71,21 +73,24 @@ std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
 	return (os);
 }
 
-void Fixed::test(void) const {
-	float	num = FixedPointValue;
-	for (int i = 0; i < FractionalBitCount; i++)
-		num /= 2;
-	std::cout << num << std::endl;
-}
-
-int Fixed::toInt(void) const {
-	return (FixedPointValue >> FractionalBitCount);
+void Fixed::setRawBits(const int raw) {
+	FixedPointValue = raw;
 }
 
 int Fixed::getRawBits(void) const {
 	return (FixedPointValue);
 }
 
-void Fixed::setRawBits(const int raw) {
-	FixedPointValue = raw;
+int Fixed::toInt(void) const {
+	return (FixedPointValue >> FractionalBitCount);
 }
+
+float Fixed::toFloat(void) const {
+	float	num = this->getRawBits();
+
+	for (int i = 0; i < 8; i++)
+		num /= 2;
+	return (num);
+}
+
+
