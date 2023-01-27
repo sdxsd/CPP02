@@ -2,19 +2,18 @@
 #include "Fixed.hpp"
 
 int main(void) {
-  Fixed a;
-  Fixed const b(10);
-  Fixed const c(42.42f);
-  Fixed const d(b);
-  a = Fixed(1234.4321f);
+  Fixed x(10);
+  Fixed y(8);
+  Fixed z(8.5f);
 
-  std::cout << "b = " << b << std::endl;
-  std::cout << "c = " << c << std::endl;
-  if (c > b)
-    std::cout << "c > b = TRUE" << std::endl;
-  std::cout << "c + b = " << c + b << std::endl;
-  std::cout << "(c + b) - c = " << (c + b) - c << std::endl;
-  if ((c < b) == false)
-    std::cout << "c < b = false" << std::endl;
-  return (0);
+  std::cout << "x + z = " << x + z << std::endl;
+  std::cout << "x - y = " << x - y << std::endl;
+  std::cout << "z * 2 = " << z * 2 << std::endl;
+  std::cout << "(postfix) x-- " << x-- << std::endl;
+  std::cout << "(after postfix) x = " << x << std::endl;
+  std::cout << "++y = " << ++y << std::endl;
+  for (int i = 0; i < 10; i++)
+    ++y;
+  std::cout << "++y 10 times = " << y << std::endl;
+  return 0;
 }

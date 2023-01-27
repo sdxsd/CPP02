@@ -72,28 +72,28 @@ void Fixed::operator=(const Fixed &fix) {
 Fixed Fixed::operator+(const Fixed &fix) const {
 	Fixed result;
 
-	result = Fixed(fix.toFloat() + this->toFloat());
+	result = Fixed(this->toFloat() + fix.toFloat());
 	return (result);
 }
 
 Fixed Fixed::operator-(const Fixed &fix) const {
 	Fixed result;
 
-	result = Fixed(fix.toFloat() - this->toFloat());
+	result = Fixed(this->toFloat() - fix.toFloat());
 	return (result);
 }
 
 Fixed Fixed::operator/(const Fixed &fix) const {
 	Fixed result;
 
-	result = Fixed(fix.toFloat() / this->toFloat());
+	result = Fixed(this->toFloat() / fix.toFloat());
 	return (result);
 }
 
 Fixed Fixed::operator*(const Fixed &fix) const {
 	Fixed result;
 
-	result = Fixed(fix.toFloat() * this->toFloat());
+	result = Fixed(this->toFloat() * fix.toFloat());
 	return (result);
 }
 
@@ -131,24 +131,16 @@ Fixed &Fixed::operator--(void) {
 	return (*this);
 }
 
-Fixed &Fixed::operator++(int x) {
-	if (x >= 0) {
-		for (int i = 0; i < x; i++)
-			++(this->FixedPointValue); }
-	else if (x <= 0) {
-		for (int i = 0; i < x; i++)
-			--(this->FixedPointValue); }
-	return (*this);
+Fixed Fixed::operator++(int) {
+	Fixed result(*this);
+	++(this->FixedPointValue);
+	return (result);
 }
 
-Fixed &Fixed::operator--(int x) {
-	if (x <= 0) {
-		for (int i = 0; i < x; i++)
-			++(this->FixedPointValue); }
-	else if (x >= 0) {
-		for (int i = 0; i < x; i++)
-			--(this->FixedPointValue); }
-	return (*this);
+Fixed Fixed::operator--(int) {
+	Fixed result(*this);
+	--(this->FixedPointValue);
+	return (result);
 }
 
 /* === / STATIC MEMBER FUNCTIONS / === */
@@ -160,6 +152,18 @@ Fixed& Fixed::min(Fixed &x, Fixed &y) {
 }
 
 Fixed& Fixed::max(Fixed &x, Fixed &y) {
+	if (x.toFloat() >= y.toFloat())
+		return (x);
+	return (y);
+}
+
+const Fixed& Fixed::min(const Fixed &x, const Fixed &y) {
+	if (x.toFloat() <= y.toFloat())
+		return (x);
+	return (y);
+}
+
+const Fixed& Fixed::max(const Fixed &x, const Fixed &y) {
 	if (x.toFloat() >= y.toFloat())
 		return (x);
 	return (y);
