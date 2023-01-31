@@ -1,16 +1,6 @@
 #include "Fixed.hpp"
 #include <math.h>
 
-// void Fixed::Multiply(int n, int x)
-// {
-// 	long number = (long)n;
-// 	long multiplier = (long)x;
-
-// 	y = n * x
-// 	y << 8;
-// 	return (number * multiplier << FractionalBitCount * 2);
-// }
-
 Fixed::Fixed(void) {
 	FixedPointValue = 0;
 	std::cout << "Default constructor called." << std::endl;
