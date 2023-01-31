@@ -22,7 +22,6 @@ class Fixed {
 		int	toInt(void) const;
 		float	toFloat(void) const;
 		// Operators.
-		friend std::ostream&	operator<<(std::ostream& os, const Fixed& fixed);
 		void			operator=(const Fixed &fix);
 		Fixed			operator+(const Fixed &fix) const;
 		Fixed			operator-(const Fixed &fix) const;
@@ -44,5 +43,7 @@ class Fixed {
 		static const Fixed&	min(const Fixed &x, const Fixed &y);
 		static const Fixed&	max(const Fixed &x, const Fixed &y);
 };
+
+std::ostream&	operator<<(std::ostream& os, const Fixed& toPrint);
 
 #endif // FIXED_H

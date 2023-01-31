@@ -58,8 +58,8 @@ float Fixed::toFloat(void) const {
 
 /* === / OPERATORS / === */
 
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
-	os << fixed.toFloat();
+std::ostream& operator<<(std::ostream &os, const Fixed &toPrint) {
+	os << toPrint.toFloat();
 	return (os);
 }
 
