@@ -43,24 +43,20 @@ void Fixed::operator=(const Fixed &copy) {
 	std::cout << "Copy assignment operator called." << std::endl;
 }
 
-std::ostream& operator<<(std::ostream& os, const Fixed& fixed) {
-	float	num = fixed.getRawBits();
-
-	for (int i = 0; i < 8; i++)
-		num /= 2;
-	os << num;
+std::ostream& operator<<(std::ostream &os, const Fixed &toPrint) {
+	os << toPrint.toFloat();
 	return (os);
-}
-
-void Fixed::test(void) const {
-	float	num = FixedPointValue;
-	for (int i = 0; i < FractionalBitCount; i++)
-		num /= 2;
-	std::cout << num << std::endl;
 }
 
 int Fixed::toInt(void) const {
 	return (FixedPointValue >> FractionalBitCount);
+}
+
+float Fixed::toFloat(void) const {
+	float	num = this->getRawBits();
+
+	num = (float)FixedPointValue / (1 << FractionalBitCount);
+	return (num);
 }
 
 int Fixed::getRawBits(void) const {

@@ -16,9 +16,10 @@ class Fixed {
 		void	operator=(const Fixed &copy);
 		void	setRawBits(int const raw);
 		int	getRawBits(void) const;
-		void	test(void) const;
 		int	toInt(void) const;
-		friend std::ostream&	operator<<(std::ostream& os, const Fixed& fixed);
+		float	toFloat(void) const;
 };
+
+std::ostream& operator<<(std::ostream &os, const Fixed &toPrint);
 
 #endif // FIXED_H
